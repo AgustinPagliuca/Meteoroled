@@ -1,0 +1,18 @@
+{
+  "name": "meteoroled",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "MeteoroLed - Alquiler de pantallas LED para eventos",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.16.15"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

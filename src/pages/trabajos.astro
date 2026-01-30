@@ -1,0 +1,409 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import CTASection from '../components/CTASection.astro';
+
+const categories = ['Todos', 'Recitales', 'Corporativo', 'Sociales', 'Deportivos'];
+
+const works = [
+  {
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=600&fit=crop',
+    title: 'Festival de Rock Nacional',
+    category: 'Recitales',
+    description: 'Pantallas P5 para festival con más de 5000 asistentes',
+    screens: '2 pantallas P5 de 4x3m'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=600&fit=crop',
+    title: 'Conferencia Tech Summit',
+    category: 'Corporativo',
+    description: 'Evento corporativo con pantallas de alta definición',
+    screens: '3 pantallas P2.5'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=600&fit=crop',
+    title: 'Lanzamiento de Producto',
+    category: 'Corporativo',
+    description: 'Presentación de nuevo producto automotriz',
+    screens: '1 pantalla curva P3'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=600&fit=crop',
+    title: 'Fiesta de 15 Años',
+    category: 'Sociales',
+    description: 'Celebración con pantalla LED como centro visual',
+    screens: '1 pantalla P3 de 3x2m'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&h=600&fit=crop',
+    title: 'Concierto Electrónica',
+    category: 'Recitales',
+    description: 'Show de DJ con visuales sincronizados',
+    screens: '4 pantallas P5'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=600&fit=crop',
+    title: 'Congreso Médico',
+    category: 'Corporativo',
+    description: 'Presentaciones médicas con máxima nitidez',
+    screens: '2 pantallas P2.5'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&h=600&fit=crop',
+    title: 'Final de Basketball',
+    category: 'Deportivos',
+    description: 'Pantalla marcador para evento deportivo',
+    screens: '2 pantallas P10'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&h=600&fit=crop',
+    title: 'Casamiento de Gala',
+    category: 'Sociales',
+    description: 'Boda de lujo con pantalla para fotos y videos',
+    screens: '1 pantalla P3 de 4x2.5m'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=600&fit=crop',
+    title: 'Festival al Aire Libre',
+    category: 'Recitales',
+    description: 'Gran festival con múltiples pantallas',
+    screens: '6 pantallas P5 y P10'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=600&fit=crop',
+    title: 'Asamblea Corporativa',
+    category: 'Corporativo',
+    description: 'Reunión anual de accionistas',
+    screens: '1 pantalla P2.5 de 6x3m'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&h=600&fit=crop',
+    title: 'Cumpleaños VIP',
+    category: 'Sociales',
+    description: 'Celebración privada con show visual',
+    screens: '2 pantallas P3'
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?w=600&h=600&fit=crop',
+    title: 'Torneo de Fútbol',
+    category: 'Deportivos',
+    description: 'Transmisión en vivo del partido',
+    screens: '1 pantalla P10 gigante'
+  }
+];
+---
+
+<MainLayout 
+  title="Trabajos Realizados"
+  description="Portfolio de eventos con pantallas LED: conciertos, eventos corporativos, fiestas y más. Conocé nuestros trabajos."
+  currentPage="trabajos"
+>
+  <PageHero 
+    title="Nuestros Trabajos"
+    subtitle="Más de 199 eventos realizados con éxito"
+  />
+
+  <!-- Portfolio Section -->
+  <section class="section portfolio-section">
+    <div class="container">
+      <!-- Filter Buttons -->
+      <div class="portfolio-filters fade-in">
+        {categories.map((cat, index) => (
+          <button 
+            class={`filter-btn ${index === 0 ? 'active' : ''}`}
+            data-filter={cat.toLowerCase()}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <!-- Portfolio Grid -->
+      <div class="portfolio-grid" id="portfolioGrid">
+        {works.map((work, index) => (
+          <article 
+            class="portfolio-card fade-in" 
+            data-category={work.category.toLowerCase()}
+            style={`animation-delay: ${index * 0.05}s`}
+          >
+            <div class="portfolio-image">
+              <img src={work.image} alt={work.title} loading="lazy" />
+              <div class="portfolio-overlay">
+                <span class="portfolio-category">{work.category}</span>
+                <h3>{work.title}</h3>
+                <p>{work.description}</p>
+                <span class="portfolio-screens">{work.screens}</span>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card fade-in">
+          <span class="stat-number">199+</span>
+          <span class="stat-label">Eventos realizados</span>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-number">765+</span>
+          <span class="stat-label">Clientes satisfechos</span>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Pantallas disponibles</span>
+        </div>
+        <div class="stat-card fade-in">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Años de experiencia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection 
+    title="¿Querés que tu evento sea el próximo?"
+    subtitle="Sumate a nuestra lista de clientes satisfechos"
+  />
+</MainLayout>
+
+<style>
+  /* Reduce spacing between sections */
+  .portfolio-section {
+    padding-bottom: 60px;
+  }
+
+  .stats-section {
+    padding-top: 60px;
+  }
+
+  /* Filters */
+  .portfolio-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 50px;
+  }
+  
+  .filter-btn {
+    padding: 12px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 30px;
+    color: var(--text-body);
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  .filter-btn:hover:not(.active) {
+    border-color: var(--primary);
+    background: var(--bg-section);
+    color: var(--text-dark);
+  }
+
+  .filter-btn.active {
+    background: var(--gradient-primary);
+    border-color: transparent;
+    color: var(--white);
+  }
+  
+  /* Portfolio Grid */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  
+  .portfolio-card {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    aspect-ratio: 1;
+    cursor: pointer;
+  }
+  
+  .portfolio-card.hidden {
+    display: none;
+  }
+  
+  .portfolio-image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-slow);
+  }
+  
+  .portfolio-card:hover .portfolio-image img {
+    transform: scale(1.1);
+  }
+  
+  .portfolio-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px;
+    opacity: 0;
+    transition: var(--transition);
+  }
+
+  .portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+  }
+
+  .portfolio-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+  }
+
+  .portfolio-overlay h3 {
+    font-size: 1.25rem;
+    margin-bottom: 8px;
+    color: var(--white);
+  }
+
+  .portfolio-overlay p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 12px;
+  }
+
+  .portfolio-screens {
+    font-size: 0.8rem;
+    color: var(--primary);
+    font-weight: 500;
+  }
+  
+  /* Stats */
+  .stats-section {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .stat-card {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .stat-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .stat-card .stat-number {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  
+  .stat-card .stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .filter-btn {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .portfolio-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Portfolio Filter
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioCards = document.querySelectorAll('.portfolio-card');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.dataset.filter;
+        
+        // Filter cards
+        portfolioCards.forEach(card => {
+          const category = card.dataset.category;
+          
+          if (filter === 'todos' || category === filter) {
+            card.classList.remove('hidden');
+            card.style.animation = 'fadeIn 0.5s ease forwards';
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  });
+</script>

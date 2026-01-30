@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  centered?: boolean;
+}
+
+const { title, subtitle, centered = true } = Astro.props;
+---
+
+<div class:list={['section-header', { centered }]}>
+  <h2 class="fade-in">{title}</h2>
+  {subtitle && <p class="fade-in">{subtitle}</p>}
+</div>
+
+<style>
+  .section-header {
+    margin-bottom: 50px;
+  }
+  
+  .section-header.centered {
+    text-align: center;
+  }
+  
+  .section-header h2 {
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+  
+  .section-header p {
+    color: var(--text-muted);
+    font-size: 1.125rem;
+    max-width: 600px;
+  }
+  
+  .section-header.centered p {
+    margin: 0 auto;
+  }
+</style>

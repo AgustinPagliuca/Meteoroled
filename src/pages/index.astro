@@ -1,0 +1,476 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+// Imágenes del carrusel
+const carouselImages = [
+  {
+    src: '/images/header-img.jpeg',
+    alt: 'Evento con pantallas LED'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1920&h=1080&fit=crop',
+    alt: 'Concierto con pantallas gigantes'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1920&h=1080&fit=crop',
+    alt: 'Festival con iluminación LED'
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&h=1080&fit=crop',
+    alt: 'Conferencia corporativa'
+  }
+];
+
+const services = [
+  {
+    title: 'Alquiler de Pantallas',
+    description: 'Pantallas LED de alta definición para eventos de cualquier escala. Calidad profesional garantizada.',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop'
+  },
+  {
+    title: 'Colocación Profesional',
+    description: 'Instalación y montaje por técnicos especializados. Nos encargamos de todo el proceso.',
+    image: 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=400&fit=crop'
+  },
+  {
+    title: 'Servicio Técnico',
+    description: 'Soporte técnico 24/7 durante tu evento. Respuesta inmediata ante cualquier necesidad.',
+    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop'
+  }
+];
+
+const screens = [
+  { model: 'P2.5', pitch: '2.5mm', use: 'Interior / Alta definición', ideal: 'Conferencias, TV studios' },
+  { model: 'P3', pitch: '3mm', use: 'Interior / Versátil', ideal: 'Eventos corporativos, ferias' },
+  { model: 'P5', pitch: '5mm', use: 'Interior / Exterior', ideal: 'Conciertos, festivales' },
+  { model: 'P10', pitch: '10mm', use: 'Exterior / Gran formato', ideal: 'Estadios, vía pública' }
+];
+
+const features = [
+  { title: 'Calidad Premium', desc: 'Equipos de última generación' },
+  { title: 'Puntualidad', desc: 'Siempre a tiempo, sin excusas' },
+  { title: 'Soporte 24/7', desc: 'Asistencia durante todo el evento' },
+  { title: 'Equipo Profesional', desc: 'Técnicos capacitados' },
+  { title: 'Precios Competitivos', desc: 'La mejor relación calidad-precio' },
+  { title: 'Cobertura AMBA', desc: 'Llegamos a toda la zona' }
+];
+
+const portfolio = [
+  { 
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop',
+    title: 'Festival de Música',
+    category: 'Recitales'
+  },
+  { 
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop',
+    title: 'Conferencia Corporativa',
+    category: 'Corporativo'
+  },
+  { 
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+    title: 'Lanzamiento de Producto',
+    category: 'Corporativo'
+  },
+  { 
+    image: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&h=400&fit=crop',
+    title: 'Fiesta de 15 Años',
+    category: 'Sociales'
+  }
+];
+---
+
+<MainLayout 
+  title="MeteoroLed - Pantallas LED para Eventos | Alquiler y Servicio Técnico"
+  description="Alquiler, colocación y servicio técnico de pantallas LED para eventos en Buenos Aires. Pantallas P2.5, P3, P5 y P10 para shows, conferencias, ferias y más."
+  currentPage="inicio"
+>
+  <!-- Hero Section con Carrusel -->
+  <section class="hero">
+    <!-- Carrusel de imágenes -->
+    <div class="carousel" id="heroCarousel">
+      <div class="carousel-track" id="carouselTrack">
+        {carouselImages.map((img, index) => (
+          <div class="carousel-slide" data-index={index}>
+            <img src={img.src} alt={img.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+            <div class="carousel-overlay"></div>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Flechas de navegación (Desktop) -->
+      <div class="carousel-nav">
+        <button class="carousel-btn carousel-prev" aria-label="Imagen anterior">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="carousel-btn carousel-next" aria-label="Imagen siguiente">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
+      
+      <!-- Indicadores -->
+      <div class="carousel-dots">
+        {carouselImages.map((_, index) => (
+          <button 
+            class={`carousel-dot ${index === 0 ? 'active' : ''}`}
+            data-index={index}
+            aria-label={`Ir a imagen ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+    
+    <!-- Contenido del Hero -->
+    <div class="hero-content-wrapper">
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="fade-in">Hacemos brillar<br/><span class="gradient-text">tus eventos</span></h1>
+          <p class="fade-in">Alquiler, colocación y servicio técnico de pantallas LED para todo tipo de eventos en Buenos Aires y alrededores.</p>
+          
+          <div class="hero-buttons fade-in">
+            <a href="https://wa.me/5491168050177?text=Hola!%20Quiero%20cotizar%20pantallas%20LED%20para%20mi%20evento" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Cotizar Ahora
+            </a>
+            <a href="/pantallas" class="btn btn-outline btn-lg">Ver Pantallas</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section - Centrado -->
+  <section class="section">
+    <div class="container">
+      <SectionHeader 
+        title="Nuestros Servicios"
+        subtitle="Soluciones completas en pantallas LED para cualquier tipo de evento"
+      />
+      
+      <div class="services-grid">
+        {services.map((service, index) => (
+          <article class="service-card fade-in">
+            <div class="service-image">
+              <img src={service.image} alt={service.title} loading="lazy" />
+            </div>
+            <div class="service-content">
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <a href="/servicios" class="service-link">
+                Más información
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Screens Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeader 
+        title="Nuestras Pantallas"
+        subtitle="Tecnología de punta para cada necesidad"
+      />
+      
+      <div class="pantallas-grid">
+        {screens.map((screen, index) => (
+          <article class="pantalla-card fade-in">
+            <h3>{screen.model}</h3>
+            <p class="pitch">Pitch {screen.pitch}</p>
+            <div class="pantalla-specs">
+              <div class="spec-item">
+                <span>Uso</span>
+                <span>{screen.use}</span>
+              </div>
+              <div class="spec-item">
+                <span>Ideal para</span>
+                <span>{screen.ideal}</span>
+              </div>
+            </div>
+            <a href="/pantallas" class="btn btn-outline-dark btn-sm">Ver detalles</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Preview -->
+  <section class="section">
+    <div class="container">
+      <SectionHeader 
+        title="Trabajos Realizados"
+        subtitle="Algunos de nuestros eventos más destacados"
+      />
+      
+      <div class="portfolio-grid">
+        {portfolio.map((item, index) => (
+          <article class="portfolio-item fade-in">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <div class="portfolio-overlay">
+              <span class="category">{item.category}</span>
+              <h4>{item.title}</h4>
+            </div>
+          </article>
+        ))}
+      </div>
+      
+      <div class="section-cta">
+        <a href="/trabajos" class="btn btn-primary">Ver todos los trabajos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="section section-alt">
+    <div class="container">
+      <SectionHeader 
+        title="¿Por qué elegirnos?"
+        subtitle="Lo que nos diferencia de la competencia"
+      />
+      
+      <div class="features-grid">
+        {features.map((feature, index) => (
+          <div class="feature-item fade-in">
+            <div class="feature-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+            </div>
+            <h4>{feature.title}</h4>
+            <p>{feature.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTASection />
+</MainLayout>
+
+<style>
+  /* Hero con Carrusel */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-content-wrapper {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    pointer-events: none;
+  }
+
+  .hero-content-wrapper * {
+    pointer-events: auto;
+  }
+
+  .hero-content {
+    max-width: 700px;
+    padding: 120px 0 80px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 7vw, 5rem);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    color: var(--white);
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 40px;
+    max-width: 550px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  /* Carrusel - Mejoras para drag */
+  .carousel {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .carousel img {
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Section CTA centered */
+  .section-cta {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 100px 0 60px;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+
+    .hero-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // Carrusel
+  document.addEventListener('DOMContentLoaded', () => {
+    const track = document.getElementById('carouselTrack') as HTMLElement;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const prevBtn = document.querySelector('.carousel-prev') as HTMLButtonElement;
+    const nextBtn = document.querySelector('.carousel-next') as HTMLButtonElement;
+    const carousel = document.getElementById('heroCarousel') as HTMLElement;
+
+    if (!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    let autoPlayInterval: ReturnType<typeof setInterval>;
+
+    // Variables para touch/swipe en mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function updateCarousel(index: number) {
+      currentIndex = index;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentIndex);
+      });
+    }
+
+    function nextSlide() {
+      const next = (currentIndex + 1) % slides.length;
+      updateCarousel(next);
+    }
+
+    function prevSlide() {
+      const prev = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel(prev);
+    }
+
+    function startAutoPlay() {
+      autoPlayInterval = setInterval(nextSlide, 5000);
+    }
+
+    function stopAutoPlay() {
+      clearInterval(autoPlayInterval);
+    }
+
+    // Event listeners para botones
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        prevSlide();
+        stopAutoPlay();
+        startAutoPlay();
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        nextSlide();
+        stopAutoPlay();
+        startAutoPlay();
+      });
+    }
+
+    // Event listeners para dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        updateCarousel(index);
+        stopAutoPlay();
+        startAutoPlay();
+      });
+    });
+
+    // Touch events para swipe en mobile
+    if (carousel) {
+      carousel.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+      }, { passive: true });
+
+      carousel.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+        startAutoPlay();
+      }, { passive: true });
+    }
+
+    function handleSwipe() {
+      const threshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          nextSlide(); // Swipe left
+        } else {
+          prevSlide(); // Swipe right
+        }
+      }
+    }
+
+    // Pausar en hover (desktop)
+    if (carousel) {
+      carousel.addEventListener('mouseenter', stopAutoPlay);
+      carousel.addEventListener('mouseleave', startAutoPlay);
+    }
+
+    // Iniciar autoplay
+    startAutoPlay();
+
+    // Animaciones fade-in al scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    fadeElements.forEach(el => fadeObserver.observe(el));
+  });
+</script>

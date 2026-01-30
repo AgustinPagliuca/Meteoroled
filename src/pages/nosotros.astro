@@ -1,0 +1,319 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const values = [
+  {
+    icon: 'quality',
+    title: 'Calidad',
+    description: 'Trabajamos únicamente con equipos de primera línea para garantizar resultados excepcionales.'
+  },
+  {
+    icon: 'commitment',
+    title: 'Compromiso',
+    description: 'Nos involucramos en cada proyecto como si fuera propio, cuidando cada detalle.'
+  },
+  {
+    icon: 'punctuality',
+    title: 'Puntualidad',
+    description: 'Respetamos los tiempos acordados. Siempre llegamos antes para que todo esté listo.'
+  },
+  {
+    icon: 'service',
+    title: 'Servicio',
+    description: 'Brindamos atención personalizada y soporte técnico durante todo el evento.'
+  }
+];
+---
+
+<MainLayout 
+  title="Nosotros"
+  description="Conocé a MeteoroLed: nuestra historia, valores y el equipo detrás de cada evento exitoso."
+  currentPage="nosotros"
+>
+  <PageHero 
+    title="Sobre Nosotros"
+    subtitle="La pasión por la tecnología que ilumina tus eventos"
+  />
+
+  <!-- About Section -->
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image fade-in">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&h=700&fit=crop"
+            alt="Equipo MeteoroLed trabajando"
+            loading="lazy"
+          />
+        </div>
+        
+        <div class="about-content fade-in">
+          <h2>Nuestra Historia</h2>
+          <p>
+            MeteoroLed nació en 2019 de la pasión por la tecnología y los eventos. Lo que comenzó como un 
+            pequeño emprendimiento con dos pantallas LED, hoy se ha convertido en una empresa referente 
+            en el alquiler de pantallas LED para eventos en Buenos Aires.
+          </p>
+          <p>
+            Desde el primer día, nuestro objetivo fue claro: brindar tecnología de punta con un servicio 
+            personalizado y cercano. Entendemos que cada evento es único y merece una atención especial.
+          </p>
+          <p>
+            Hoy contamos con un amplio inventario de pantallas LED de diferentes características, un equipo
+            técnico capacitado y la experiencia de más de 199 eventos exitosos. Pero lo que más nos
+            enorgullece es la confianza que nuestros clientes depositan en nosotros evento tras evento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="section values-section">
+    <div class="container">
+      <SectionHeader 
+        title="Nuestros Valores"
+        subtitle="Los principios que guían nuestro trabajo diario"
+      />
+      
+      <div class="values-grid">
+        {values.map((value, index) => (
+          <div class="value-card fade-in" style={`animation-delay: ${index * 0.1}s`}>
+            <div class="value-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+              </svg>
+            </div>
+            <h3>{value.title}</h3>
+            <p>{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Us Section -->
+  <section class="section why-section">
+    <div class="container">
+      <div class="why-content fade-in">
+        <h2>¿Por qué elegirnos?</h2>
+        <div class="why-grid">
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Equipos de última generación</span>
+          </div>
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Precios competitivos y transparentes</span>
+          </div>
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Instalación y retiro incluidos</span>
+          </div>
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Soporte técnico durante el evento</span>
+          </div>
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Asesoramiento personalizado</span>
+          </div>
+          <div class="why-item">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+            </svg>
+            <span>Experiencia comprobada</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CTASection 
+    title="¿Listo para trabajar juntos?"
+    subtitle="Contanos sobre tu evento y hagamos algo increíble"
+  />
+</MainLayout>
+
+<style>
+  /* Reduce spacing between sections */
+  .about-section {
+    padding-bottom: 60px;
+  }
+
+  /* About Section */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+  
+  .about-image img {
+    border-radius: var(--border-radius-lg);
+    width: 100%;
+  }
+
+  .about-content h2 {
+    margin-bottom: 24px;
+  }
+  
+  .about-content p {
+    color: var(--text-body);
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  /* Values Section */
+  .values-section {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+    padding-top: 60px;
+    padding-bottom: 20px;
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  
+  .value-card {
+    background: var(--bg-card);
+    padding: 40px 30px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .value-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .value-icon {
+    width: 70px;
+    height: 70px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+  }
+  
+  .value-icon svg {
+    color: var(--white);
+  }
+  
+  .value-card h3 {
+    margin-bottom: 12px;
+    font-size: 1.25rem;
+    color: var(--text-dark);
+  }
+
+  .value-card p {
+    color: var(--text-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Why Section */
+  .why-section {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+    padding-top: 20px;
+  }
+  
+  .why-content {
+    background: var(--bg-card);
+    padding: 60px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+
+  .why-content h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--text-dark);
+  }
+  
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  
+  .why-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-section);
+    border-radius: 8px;
+  }
+
+  .why-item svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .why-item span {
+    color: var(--text-dark);
+    font-weight: 500;
+  }
+  
+  @media (max-width: 1024px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .values-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .why-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .values-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .why-content {
+      padding: 40px 24px;
+    }
+
+    .why-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

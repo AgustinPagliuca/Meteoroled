@@ -1,0 +1,114 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppFloat from '../components/WhatsAppFloat.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPage?: string;
+  ogImage?: string;
+}
+
+const { 
+  title, 
+  description = 'MeteoroLed - Alquiler, colocación y servicio técnico de pantallas LED para eventos en Buenos Aires.',
+  currentPage = '',
+  ogImage = '/images/logo1.png'
+} = Astro.props;
+
+const siteUrl = 'https://meteoroled.com';
+const fullTitle = title.includes('MeteoroLed') ? title : `${title} | MeteoroLed`;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="author" content="MeteoroLed" />
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+  <meta property="og:url" content={siteUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/images/logo1.png" />
+  <link rel="apple-touch-icon" href="/images/logo1.png" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  
+  <title>{fullTitle}</title>
+</head>
+<body>
+  <Header currentPage={currentPage} />
+  
+  <main>
+    <slot />
+  </main>
+  
+  <Footer />
+  <WhatsAppFloat />
+  
+  <script>
+    // Animaciones al scroll
+    function initScrollAnimations() {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+        observer.observe(el);
+      });
+    }
+
+    // Smooth scroll para anchors
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+    }
+
+    // Inicializar
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollAnimations();
+      initSmoothScroll();
+    });
+  </script>
+</body>
+</html>

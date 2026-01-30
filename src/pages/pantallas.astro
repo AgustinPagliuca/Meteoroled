@@ -1,0 +1,649 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const screens = [
+  {
+    model: 'P2.5',
+    pitch: '2.5mm',
+    resolution: 'Alta definición',
+    brightness: '800-1200 nits',
+    viewing: '160°',
+    environment: 'Interior',
+    distance: '2-15 metros',
+    ideal: ['Conferencias y presentaciones', 'Estudios de TV', 'Showrooms', 'Eventos VIP'],
+    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&h=400&fit=crop',
+    featured: true
+  },
+  {
+    model: 'P3',
+    pitch: '3mm',
+    resolution: 'Full HD',
+    brightness: '800-1500 nits',
+    viewing: '160°',
+    environment: 'Interior',
+    distance: '3-20 metros',
+    ideal: ['Eventos corporativos', 'Ferias y exposiciones', 'Salones de eventos', 'Conciertos indoor'],
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop',
+    featured: true
+  },
+  {
+    model: 'P5',
+    pitch: '5mm',
+    resolution: 'HD',
+    brightness: '1500-5000 nits',
+    viewing: '160°',
+    environment: 'Interior / Exterior',
+    distance: '5-30 metros',
+    ideal: ['Conciertos y festivales', 'Eventos deportivos', 'Ferias outdoor', 'Publicidad exterior'],
+    image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=400&fit=crop',
+    featured: false
+  },
+  {
+    model: 'P10',
+    pitch: '10mm',
+    resolution: 'Estándar',
+    brightness: '5000-8000 nits',
+    viewing: '160°',
+    environment: 'Exterior',
+    distance: '10-100 metros',
+    ideal: ['Estadios', 'Vía pública', 'Grandes festivales', 'Publicidad de largo alcance'],
+    image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=400&fit=crop',
+    featured: false
+  }
+];
+
+const specs = [
+  { label: 'Modelo', key: 'model' },
+  { label: 'Pixel Pitch', key: 'pitch' },
+  { label: 'Resolución', key: 'resolution' },
+  { label: 'Brillo', key: 'brightness' },
+  { label: 'Ángulo visión', key: 'viewing' },
+  { label: 'Ambiente', key: 'environment' },
+  { label: 'Distancia óptima', key: 'distance' }
+];
+---
+
+<MainLayout 
+  title="Pantallas LED"
+  description="Catálogo de pantallas LED para alquiler: P2.5, P3, P5 y P10. Encuentra la pantalla ideal para tu evento."
+  currentPage="pantallas"
+>
+  <PageHero 
+    title="Nuestras Pantallas"
+    subtitle="Tecnología de punta para cada tipo de evento"
+  />
+
+  <!-- Intro -->
+  <section class="section">
+    <div class="container">
+      <div class="intro-content fade-in">
+        <p class="intro-text">
+          Contamos con pantallas LED de diferentes características para adaptarnos a cualquier necesidad. 
+          El <strong>pixel pitch</strong> (distancia entre píxeles) determina la resolución y la distancia óptima de visualización. 
+          A menor número, mayor definición y menor distancia de visualización.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Screens Grid -->
+  <section class="section screens-catalog">
+    <div class="container">
+      <div class="screens-carousel-wrapper">
+        <div class="screens-grid" id="screensCarousel">
+          {screens.map((screen, index) => (
+            <article class={`screen-card-full fade-in ${screen.featured ? 'featured' : ''}`} style={`animation-delay: ${index * 0.1}s`}>
+              <div class="screen-image">
+                <img src={screen.image} alt={`Pantalla LED ${screen.model}`} loading="lazy" />
+                {screen.featured && <span class="featured-badge">Más solicitada</span>}
+              </div>
+              <div class="screen-info-full">
+                <div class="screen-header-full">
+                  <h2>{screen.model}</h2>
+                  <span class="pitch-badge">Pitch {screen.pitch}</span>
+                </div>
+
+                <div class="screen-specs">
+                  <div class="spec-item">
+                    <span class="spec-label">Resolución</span>
+                    <span class="spec-value">{screen.resolution}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Brillo</span>
+                    <span class="spec-value">{screen.brightness}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Ambiente</span>
+                    <span class="spec-value">{screen.environment}</span>
+                  </div>
+                  <div class="spec-item">
+                    <span class="spec-label">Distancia óptima</span>
+                    <span class="spec-value">{screen.distance}</span>
+                  </div>
+                </div>
+
+                <div class="screen-ideal">
+                  <h4>Ideal para:</h4>
+                  <ul>
+                    {screen.ideal.map(item => (
+                      <li>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                        </svg>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a href={`https://wa.me/5491168050177?text=Hola!%20Quiero%20cotizar%20pantalla%20${screen.model}%20para%20mi%20evento`} class="btn btn-primary" target="_blank" rel="noopener">
+                  Cotizar {screen.model}
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Dots for mobile carousel -->
+        <div class="screens-dots">
+          {screens.map((_, index) => (
+            <button class={`screen-dot ${index === 0 ? 'active' : ''}`} data-index={index} aria-label={`Ir a pantalla ${index + 1}`}></button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="section comparison-section">
+    <div class="container">
+      <SectionHeader 
+        title="Comparativa de Pantallas"
+        subtitle="Encontrá la pantalla perfecta para tu evento"
+      />
+      
+      <div class="table-wrapper fade-in">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Característica</th>
+              {screens.map(s => <th>{s.model}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {specs.map(spec => (
+              <tr>
+                <td class="spec-name">{spec.label}</td>
+                {screens.map(s => <td>{s[spec.key]}</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Help Section -->
+  <section class="section help-section">
+    <div class="container">
+      <div class="help-content fade-in">
+        <div class="help-text">
+          <h2>¿No sabés qué pantalla elegir?</h2>
+          <p>Contanos sobre tu evento y te asesoramos gratis. Consideramos el tipo de evento, la cantidad de asistentes, la iluminación del lugar y la distancia de visualización para recomendarte la mejor opción.</p>
+        </div>
+        <a href="https://wa.me/5491168050177?text=Hola!%20Necesito%20asesoramiento%20para%20elegir%20pantalla%20LED" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Pedir asesoramiento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</MainLayout>
+
+<style>
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .intro-text {
+    font-size: 1.125rem;
+    color: var(--text-body);
+    line-height: 1.8;
+  }
+
+  .intro-text strong {
+    color: var(--text-dark);
+  }
+  
+  /* Screens Catalog */
+  .screens-catalog {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+  }
+
+  .screens-carousel-wrapper {
+    position: relative;
+  }
+
+  .screens-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .screens-dots {
+    display: none;
+  }
+  
+  .screen-card-full {
+    background: var(--bg-card);
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .screen-card-full:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 102, 255, 0.15);
+  }
+
+  .screen-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .screen-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: var(--transition-slow);
+  }
+  
+  .screen-card-full:hover .screen-image img {
+    transform: scale(1.05);
+  }
+  
+  .featured-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: var(--gradient-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  
+  .screen-info-full {
+    padding: 30px;
+  }
+  
+  .screen-header-full {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+  
+  .screen-header-full h2 {
+    font-size: 2.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .pitch-badge {
+    background: var(--bg-section);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  
+  .screen-specs {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  
+  .spec-item {
+    background: var(--bg-section);
+    padding: 12px 16px;
+    border-radius: 8px;
+  }
+
+  .spec-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .spec-value {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+  
+  .screen-ideal h4 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-muted);
+  }
+
+  .screen-ideal ul {
+    margin-bottom: 24px;
+  }
+
+  .screen-ideal li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .screen-ideal svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+  
+  /* Comparison Table */
+  .comparison-section {
+    background: var(--bg-main);
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+  }
+
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 16px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .comparison-table th {
+    background: var(--gradient-primary);
+    color: var(--white);
+    font-weight: 600;
+    font-family: var(--font-display);
+  }
+  
+  .comparison-table th:first-child {
+    text-align: left;
+  }
+  
+  .comparison-table td:first-child {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .comparison-table tbody tr:hover {
+    background: var(--bg-section);
+  }
+
+  .comparison-table td {
+    color: var(--text-body);
+  }
+  
+  /* Help Section */
+  .help-section {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+  }
+  
+  .help-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+
+  .help-text {
+    max-width: 600px;
+  }
+
+  .help-text h2 {
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+
+  .help-text p {
+    color: var(--text-body);
+    line-height: 1.7;
+  }
+  
+  @media (max-width: 1024px) {
+    .screens-carousel-wrapper {
+      overflow: hidden;
+      padding-bottom: 50px;
+    }
+
+    .screens-grid {
+      display: flex;
+      grid-template-columns: none;
+      gap: 0;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      transition: transform 0.3s ease-out;
+    }
+
+    .screen-card-full {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    .screen-card-full:hover {
+      transform: none;
+      border-color: var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .screen-image {
+      height: 180px;
+    }
+
+    .screen-info-full {
+      padding: 20px;
+    }
+
+    .screen-header-full h2 {
+      font-size: 2rem;
+    }
+
+    .pitch-badge {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+    }
+
+    .screen-specs {
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .spec-item {
+      padding: 10px 12px;
+    }
+
+    .spec-label {
+      font-size: 0.7rem;
+    }
+
+    .screen-ideal h4 {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .screen-ideal ul {
+      margin-bottom: 20px;
+    }
+
+    .screen-ideal li {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .screens-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 30px;
+    }
+
+    .screen-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border-color);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0;
+    }
+
+    .screen-dot.active {
+      background: var(--primary);
+      width: 24px;
+      border-radius: 5px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .screen-specs {
+      grid-template-columns: 1fr;
+    }
+
+    .help-content {
+      flex-direction: column;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 10px;
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const carousel = document.getElementById('screensCarousel');
+    const dots = document.querySelectorAll('.screen-dot');
+    const cards = document.querySelectorAll('.screen-card-full');
+
+    if (!carousel || dots.length === 0 || cards.length === 0) return;
+
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    function updateCarousel(index: number) {
+      currentIndex = index;
+
+      // Only apply transform on mobile (max-width: 1024px)
+      if (window.innerWidth <= 1024) {
+        carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentIndex);
+        });
+      }
+    }
+
+    function nextSlide() {
+      const next = (currentIndex + 1) % cards.length;
+      updateCarousel(next);
+    }
+
+    function prevSlide() {
+      const prev = (currentIndex - 1 + cards.length) % cards.length;
+      updateCarousel(prev);
+    }
+
+    // Dots navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        updateCarousel(index);
+      });
+    });
+
+    // Touch events for swipe
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carousel.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+      const threshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > threshold) {
+        if (diff > 0) {
+          nextSlide(); // Swipe left
+        } else {
+          prevSlide(); // Swipe right
+        }
+      }
+    }
+
+    // Reset on window resize
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 1024) {
+        carousel.style.transform = '';
+        currentIndex = 0;
+      } else {
+        updateCarousel(currentIndex);
+      }
+    });
+  });
+</script>

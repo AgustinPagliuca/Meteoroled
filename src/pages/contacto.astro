@@ -1,0 +1,580 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CTASection from '../components/CTASection.astro';
+
+const contactMethods = [
+  {
+    type: 'whatsapp',
+    title: 'WhatsApp',
+    value: '+54 9 11 6805-0177',
+    badge: 'Respuesta inmediata',
+    href: 'https://wa.me/5491168050177'
+  },
+  {
+    type: 'instagram',
+    title: 'Instagram',
+    value: '@meteoroled',
+    badge: 'Seguinos',
+    href: 'https://instagram.com/meteoroled'
+  },
+  {
+    type: 'location',
+    title: 'Ubicación',
+    value: 'Santos Lugares, Buenos Aires',
+    badge: 'Cobertura AMBA',
+    href: null
+  },
+  {
+    type: 'hours',
+    title: 'Horario de atención',
+    value: 'Lunes a Sábado: 9:00 - 20:00',
+    badge: 'Soporte 24/7 para eventos',
+    href: null
+  }
+];
+
+const faqs = [
+  {
+    question: '¿Con cuánta anticipación debo reservar?',
+    answer: 'Recomendamos reservar con al menos 1 semana de anticipación para garantizar disponibilidad. Para eventos grandes o fechas especiales, lo ideal es reservar con 2-3 semanas.'
+  },
+  {
+    question: '¿El servicio incluye instalación?',
+    answer: 'Sí, todos nuestros servicios incluyen transporte, instalación, configuración y desinstalación. Nuestro equipo técnico se encarga de todo.'
+  },
+  {
+    question: '¿Qué tipo de contenido puedo mostrar?',
+    answer: 'Podés mostrar videos, imágenes, presentaciones, transmisiones en vivo, redes sociales, y cualquier contenido digital. Te asesoramos sobre los formatos ideales.'
+  },
+  {
+    question: '¿Tienen soporte técnico durante el evento?',
+    answer: 'Sí, ofrecemos soporte técnico 24/7. Un operador puede quedarse durante todo tu evento para asegurar el funcionamiento perfecto.'
+  },
+  {
+    question: '¿Cuál es el costo del alquiler?',
+    answer: 'El precio varía según el tamaño de pantalla, duración del evento y servicios adicionales. Contactanos para un presupuesto personalizado sin compromiso.'
+  },
+  {
+    question: '¿Trabajan con eventos al aire libre?',
+    answer: 'Sí, contamos con pantallas específicas para exterior (P5 y P10) con mayor brillo y protección contra condiciones climáticas.'
+  }
+];
+
+const coverageAreas = ['CABA', 'Zona Norte', 'Zona Oeste', 'Zona Sur', 'Gran Buenos Aires', 'Interior (consultar)'];
+---
+
+<MainLayout 
+  title="Contacto"
+  description="Contactá a MeteoroLed para alquiler de pantallas LED en Buenos Aires. WhatsApp, email y formulario de contacto disponibles."
+  currentPage="contacto"
+>
+  <PageHero 
+    title="Contacto"
+    subtitle="Estamos listos para hacer brillar tu evento"
+  />
+
+  <!-- Contact Section -->
+  <section class="section contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+          <h2>Hablemos de tu proyecto</h2>
+          <p>Estamos disponibles para responder todas tus consultas. Elegí el medio que más te convenga y te respondemos a la brevedad.</p>
+          
+          <div class="contact-methods">
+            {contactMethods.map(method => (
+              method.href ? (
+                <a href={method.href} class={`contact-method ${method.type}`} target="_blank" rel="noopener">
+                  <div class="contact-method-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                      {method.type === 'whatsapp' && (
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      )}
+                      {method.type === 'instagram' && (
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                      )}
+                    </svg>
+                  </div>
+                  <div class="contact-method-info">
+                    <h3>{method.title}</h3>
+                    <p>{method.value}</p>
+                    <span class="contact-badge">{method.badge}</span>
+                  </div>
+                </a>
+              ) : (
+                <div class={`contact-method ${method.type}`}>
+                  <div class="contact-method-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                      {method.type === 'location' && (
+                        <path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z"/>
+                      )}
+                      {method.type === 'hours' && (
+                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm1 12v-6h-2v8h7v-2h-5z"/>
+                      )}
+                    </svg>
+                  </div>
+                  <div class="contact-method-info">
+                    <h3>{method.title}</h3>
+                    <p>{method.value}</p>
+                    <span class="contact-badge">{method.badge}</span>
+                  </div>
+                </div>
+              )
+            ))}
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper fade-in">
+          <form class="contact-form" id="contactForm">
+            <h3>Envianos tu consulta</h3>
+            
+            <div class="form-group">
+              <label for="nombre">Nombre completo *</label>
+              <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" />
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" required placeholder="+54 9 11 1234-5678" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="tipoEvento">Tipo de evento</label>
+              <select id="tipoEvento" name="tipoEvento">
+                <option value="">Seleccioná una opción</option>
+                <option value="recital">Recital / Concierto</option>
+                <option value="corporativo">Evento corporativo</option>
+                <option value="fiesta">Fiesta / Cumpleaños</option>
+                <option value="casamiento">Casamiento</option>
+                <option value="deportivo">Evento deportivo</option>
+                <option value="comercial">Local comercial</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fecha">Fecha del evento</label>
+                <input type="date" id="fecha" name="fecha" />
+              </div>
+              <div class="form-group">
+                <label for="pantalla">Tipo de pantalla</label>
+                <select id="pantalla" name="pantalla">
+                  <option value="">Seleccioná una opción</option>
+                  <option value="p2.5">P2.5 - Alta definición</option>
+                  <option value="p3">P3 - Versátil</option>
+                  <option value="p5">P5 - Exterior</option>
+                  <option value="p10">P10 - Gran formato</option>
+                  <option value="nosabe">No sé / Necesito asesoramiento</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="mensaje">Mensaje *</label>
+              <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Contanos sobre tu evento, dimensiones necesarias, ubicación..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Enviar por WhatsApp
+            </button>
+
+            <p class="form-note">* Campos obligatorios. Al enviar, serás redirigido a WhatsApp con tu mensaje.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coverage Section -->
+  <section class="section coverage-section">
+    <div class="container">
+      <div class="coverage-content fade-in">
+        <h2>Zona de cobertura</h2>
+        <p>Brindamos servicio en todo el Área Metropolitana de Buenos Aires (AMBA) y alrededores. Para eventos en otras zonas, consultanos.</p>
+        <div class="coverage-areas">
+          {coverageAreas.map(area => (
+            <div class="coverage-area">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+              </svg>
+              <span>{area}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section faq-section">
+    <div class="container">
+      <SectionHeader 
+        title="Preguntas frecuentes"
+        subtitle="Respuestas a las dudas más comunes"
+      />
+      
+      <div class="faq-grid">
+        {faqs.map((faq, index) => (
+          <div class="faq-item fade-in" style={`animation-delay: ${index * 0.05}s`}>
+            <h3>{faq.question}</h3>
+            <p>{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTASection />
+</MainLayout>
+
+<style>
+  /* Contact Section */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+  }
+  
+  .contact-info h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+
+  .contact-info > p {
+    color: var(--text-body);
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+
+  .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  a.contact-method:hover {
+    border-color: var(--primary);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .contact-method-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--gradient-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-method-icon svg {
+    color: var(--white);
+  }
+
+  .contact-method.whatsapp:hover .contact-method-icon {
+    background: #25D366;
+  }
+
+  .contact-method.instagram:hover .contact-method-icon {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  }
+
+  .contact-method-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-dark);
+  }
+
+  .contact-method-info p {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    margin-bottom: 8px;
+  }
+
+  .contact-badge {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    background: var(--gradient-primary);
+    border-radius: 20px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  
+  /* Contact Form */
+  .contact-form-wrapper {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+
+  .contact-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text-dark);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.9rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--bg-section);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+    background: var(--white);
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: var(--text-muted);
+  }
+
+  .form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .btn-block {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .form-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  /* Coverage Section */
+  .coverage-section {
+    background: linear-gradient(
+      135deg,
+      rgba(245, 247, 250, 0.4) 0%,
+      rgba(235, 238, 242, 0.6) 50%,
+      rgba(245, 247, 250, 0.4) 100%
+    );
+  }
+  
+  .coverage-content {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .coverage-content h2 {
+    margin-bottom: 16px;
+    color: var(--text-dark);
+  }
+
+  .coverage-content > p {
+    color: var(--text-body);
+    margin-bottom: 40px;
+  }
+
+  .coverage-areas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .coverage-area {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-card);
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .coverage-area:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .coverage-area svg {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .coverage-area:hover svg {
+    color: var(--white);
+  }
+
+  .coverage-area span {
+    font-weight: 500;
+    color: var(--text-dark);
+  }
+
+  .coverage-area:hover span {
+    color: var(--white);
+  }
+
+  /* FAQ Section */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .faq-item {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border-left: 3px solid var(--primary);
+    transition: var(--transition);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .faq-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: var(--text-dark);
+  }
+
+  .faq-item p {
+    font-size: 0.95rem;
+    color: var(--text-body);
+    line-height: 1.7;
+  }
+  
+  @media (max-width: 1024px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .contact-form-wrapper {
+      padding: 30px 20px;
+    }
+    
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .faq-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .coverage-areas {
+      gap: 12px;
+    }
+    
+    .coverage-area {
+      padding: 10px 16px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  // Form submission to WhatsApp
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const nombre = formData.get('nombre');
+        const telefono = formData.get('telefono');
+        const email = formData.get('email');
+        const tipoEvento = formData.get('tipoEvento');
+        const fecha = formData.get('fecha');
+        const pantalla = formData.get('pantalla');
+        const mensaje = formData.get('mensaje');
+        
+        let text = `Hola! Mi nombre es ${nombre}.\n\n`;
+        
+        if (tipoEvento) text += `*Tipo de evento:* ${tipoEvento}\n`;
+        if (fecha) text += `*Fecha:* ${fecha}\n`;
+        if (pantalla) text += `*Pantalla de interés:* ${pantalla}\n`;
+        
+        text += `\n*Mensaje:*\n${mensaje}\n\n`;
+        text += `*Contacto:*\n`;
+        text += `📱 ${telefono}\n`;
+        if (email) text += `📧 ${email}`;
+        
+        const whatsappUrl = `https://wa.me/5491168050177?text=${encodeURIComponent(text)}`;
+        window.open(whatsappUrl, '_blank');
+      });
+    }
+  });
+</script>
