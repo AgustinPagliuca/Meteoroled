@@ -11,11 +11,11 @@ interface Props {
   ogImage?: string;
 }
 
-const { 
-  title, 
+const {
+  title,
   description = 'MeteoroLed - Alquiler, colocación y servicio técnico de pantallas LED para eventos en Buenos Aires.',
   currentPage = '',
-  ogImage = '/images/logo1.png'
+  ogImage = '/Meteoroled/images/logo1.png'
 } = Astro.props;
 
 const siteUrl = 'https://meteoroled.com';
@@ -45,8 +45,8 @@ const fullTitle = title.includes('MeteoroLed') ? title : `${title} | MeteoroLed`
   <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/images/logo1.png" />
-  <link rel="apple-touch-icon" href="/images/logo1.png" />
+  <link rel="icon" type="image/png" href="/Meteoroled/images/logo1.png" />
+  <link rel="apple-touch-icon" href="/Meteoroled/images/logo1.png" />
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
