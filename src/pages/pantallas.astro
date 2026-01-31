@@ -458,7 +458,6 @@ const specs = [
   @media (max-width: 1024px) {
     .screens-carousel-wrapper {
       overflow: hidden;
-      padding-bottom: 50px;
     }
 
     .screens-grid {
@@ -554,7 +553,8 @@ const specs = [
 
   @media (max-width: 768px) {
     .screen-specs {
-      grid-template-columns: 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
     }
 
     .help-content {
@@ -567,6 +567,70 @@ const specs = [
     .comparison-table td {
       padding: 12px 10px;
       font-size: 0.85rem;
+    }
+
+    /* Cards balanceadas en mobile */
+    .screen-image {
+      height: 160px;
+    }
+
+    .screen-info-full {
+      padding: 20px;
+    }
+
+    .screen-header-full {
+      margin-bottom: 18px;
+    }
+
+    .screen-header-full h2 {
+      font-size: 1.9rem;
+    }
+
+    .pitch-badge {
+      font-size: 0.75rem;
+      padding: 6px 12px;
+    }
+
+    .spec-item {
+      padding: 10px 12px;
+    }
+
+    .spec-label {
+      font-size: 0.7rem;
+      margin-bottom: 3px;
+    }
+
+    .spec-value {
+      font-size: 0.85rem;
+    }
+
+    .screen-specs {
+      margin-bottom: 16px;
+    }
+
+    .screen-ideal h4 {
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    .screen-ideal ul {
+      margin-bottom: 18px;
+    }
+
+    .screen-ideal li {
+      font-size: 0.85rem;
+      margin-bottom: 5px;
+      gap: 6px;
+    }
+
+    .screen-ideal svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .screen-card-full .btn {
+      padding: 12px 20px;
+      font-size: 0.9rem;
     }
   }
 </style>
