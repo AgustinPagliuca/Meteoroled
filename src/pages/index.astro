@@ -3,21 +3,30 @@ import MainLayout from '../layouts/MainLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CTASection from '../components/CTASection.astro';
 
-// Imágenes del carrusel
-const carouselImages = [
+// Slides del carrusel (imágenes y videos)
+const carouselSlides = [
   {
+    type: 'video',
+    src: '/Meteoroled/images/video3.mp4',
+    alt: 'Video de pantallas LED en eventos'
+  },
+  {
+    type: 'image',
     src: '/Meteoroled/images/header-img.jpeg',
     alt: 'Evento con pantallas LED'
   },
   {
+    type: 'image',
     src: '/Meteoroled/images/image1.jpeg',
     alt: 'Concierto con pantallas gigantes'
   },
   {
+    type: 'image',
     src: '/Meteoroled/images/image7.jpeg',
     alt: 'Festival con iluminación LED'
   },
   {
+    type: 'image',
     src: '/Meteoroled/images/image10.jpeg',
     alt: 'Conferencia corporativa'
   }
@@ -42,7 +51,7 @@ const services = [
 ];
 
 const screens = [
-  { model: 'P2.5', pitch: '2.5mm', use: 'Interior / Alta definición', ideal: 'Conferencias, TV studios' },
+  { model: 'P2.8', pitch: '2.5mm', use: 'Interior / Alta definición', ideal: 'Conferencias, TV studios' },
   { model: 'P3', pitch: '3mm', use: 'Interior / Versátil', ideal: 'Eventos corporativos, ferias' },
   { model: 'P5', pitch: '5mm', use: 'Interior / Exterior', ideal: 'Conciertos, festivales' },
   { model: 'P10', pitch: '10mm', use: 'Exterior / Gran formato', ideal: 'Estadios, vía pública' }
@@ -91,9 +100,15 @@ const portfolio = [
     <!-- Carrusel de imágenes -->
     <div class="carousel" id="heroCarousel">
       <div class="carousel-track" id="carouselTrack">
-        {carouselImages.map((img, index) => (
+        {carouselSlides.map((slide, index) => (
           <div class="carousel-slide" data-index={index}>
-            <img src={img.src} alt={img.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+            {slide.type === 'video' ? (
+              <video autoplay muted loop playsinline>
+                <source src={slide.src} type="video/mp4" />
+              </video>
+            ) : (
+              <img src={slide.src} alt={slide.alt} loading={index === 0 ? 'eager' : 'lazy'} />
+            )}
             <div class="carousel-overlay"></div>
           </div>
         ))}
@@ -115,11 +130,11 @@ const portfolio = [
       
       <!-- Indicadores -->
       <div class="carousel-dots">
-        {carouselImages.map((_, index) => (
-          <button 
+        {carouselSlides.map((_, index) => (
+          <button
             class={`carousel-dot ${index === 0 ? 'active' : ''}`}
             data-index={index}
-            aria-label={`Ir a imagen ${index + 1}`}
+            aria-label={`Ir a slide ${index + 1}`}
           />
         ))}
       </div>
